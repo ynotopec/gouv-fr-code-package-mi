@@ -1,69 +1,28 @@
 ---
 name: gouv-fr-code-project
-description: "Gouv-fr-code project structure, layout, OpenCode integration, environment variables."
-version: 0.1.0
-author: gouv-fr-code (etalab-ia), Hermes Agent
-license: MIT
-platforms: [linux, macos]
-metadata:
-  hermes:
-    tags: [gouv-fr-code, project, structure, layout, open-code, opencode, mcp, agent-vm, albert-api, environment]
-    related_skills: [gouv-fr-code, gouv-fr-code-security, gouv-fr-code-compliance, gouv-fr-code-workflow]
+description: Configurer ou diagnostiquer un projet gouv-fr-code utilisant Albert, OpenCode et agent-vm. Utiliser pour le setup du projet, la sélection des MCP et skills, ou les variables AC_* de la VM.
 ---
 
-# Gouv-fr — Structure du Projet
+# Configurer un projet gouv-fr-code
 
-Architecture du projet gouv-fr-code : layout, intégration OpenCode, CLI, variables d'environnement.
+## Procédure
 
-## Project Layout
+1. Exécuter `gouv-fr-code setup` une seule fois pour générer la configuration.
+2. Conserver les règles propres au dépôt dans `AGENTS.md`.
+3. Déclarer les skills chargés dans `.albert-code/skills.txt` ; ne sélectionner que ceux requis.
+4. Configurer Albert dans `opencode.json` avec `AC_ALBERT_BASE_URL` plutôt qu'une URL dupliquée.
+5. Activer les MCP à la demande : `data-gouv`, `context7`, `playwright` ou `chrome-devtools`.
+6. Lancer la session isolée avec `gouv-fr-code run`.
 
-```
-my-app/
-├── AGENTS.md                 # Règles projet + architecture
-├── BACKLOG.md                # Tickets (epics → tasks, 🔴🟠🟡)
-├── TESTS.md                  # Scénarios de validation
-├── FEEDBACK.md               # Retours utilisateurs
-├── opencode.json             # OpenCode config: provider Albert + MCPs
-├── .albert-code/
-│   └── skills.txt            # Skills sélectionnés pour la VM
-└── src/
-    ├── components/            # Composants DSFR
-    ├── pages/                 # Pages / routes
-    ├── services/              # API calls, services métier
-    └── styles/                # Custom styles
-```
+## Conventions gérées
 
-## CLI Verbs
+- Ne pas modifier hors besoin la zone délimitée par `gouv-fr-code:agents:start` et `gouv-fr-code:agents:end` dans `AGENTS.md`.
+- Ne jamais écrire de jeton Albert dans `opencode.json` ou dans Git.
+- Régler la VM avec `AC_VM_CPUS`, `AC_VM_MEMORY` et `AC_VM_DISK`.
+- Utiliser `AGENT_VM_DIR` et `RUNTIME_VM_FILE` pour surcharger les emplacements, sans chemin utilisateur codé en dur.
 
-| Verbe | Action | Quand |
-|---|---|---|
-| `gouv-fr-code setup` | Scaffold: AGENTS.md, opencode.json, MCP selection, skills selection | Une fois par projet |
-| `gouv-fr-code run` | Lancer agent OpenCode dans la VM | Par session de codage |
+## Vérification
 
-## How OpenCode Loads Gouv-fr
-
-1. **Provider** — OpenCode lit `opencode.json` (projet-level). Le bloc `provider.albert` pointe vers Albert API (`https://albert.api.etalab.gouv.fr/v1`).
-2. **Model** — `albert/deepseek-v4-flash` (modèle SecNumCloud intégré).
-3. **MCPs** — 4 connectors opt-in : `data-gouv` (données publiques), `context7` (doc librairies), `playwright` (browser headless), `chrome-devtools` (debug DOM).
-4. **Skills** — `etalab-ia/skills` cloné en cache ; seules les skills sélectionnées sont symlinkées (`skills.txt`).
-5. **Règles** — OpenCode lit `AGENTS.md`. La zone gouv-fr-code (`<!-- gouv-fr-code:agents:start -->` / `<!-- gouv-fr-code:agents:end -->`) est gérée automatiquement.
-
-## Key Environment Variables
-
-| Variable | Default | Rôle |
-|---|---|---|
-| `AC_VM_CPUS` | `4` | CPU alloué à la VM |
-| `AC_VM_MEMORY` | `8` (GiB) | RAM allouée à la VM |
-| `AC_VM_DISK` | `32` (GiB) | Disque (sparse, croissance) |
-| `AC_ALBERT_BASE_URL` | `https://albert.api.etalab.gouv.fr/v1` | Endpoint Albert API |
-| `AGENT_VM_DIR` | `$SELF_DIR/vendor/vm` | Bundle agent-vm |
-| `RUNTIME_VM_FILE` | `$HOME/.agent-vm/runtime.sh` | Config runtime VM |
-
-## Ressources
-
-- **Source** : `github.com/etalab-ia/albert-code`
-- **OpenCode** : `https://opencode.ai/docs/fr`
-- **Albert API** : `https://albert.api.etalab.gouv.fr` · docs `https://doc.incubateur.net/alliance/albert-api`
-- **agent-vm** : `https://github.com/sylvinus/agent-vm`
-- **DSFR** : `https://www.systeme-de-design.gouv.fr/`
-- **Skills of the State** : `https://github.com/etalab-ia/skills`
+- Vérifier que `opencode.json` est valide et que le provider Albert répond.
+- Vérifier que chaque entrée de `.albert-code/skills.txt` correspond à un skill installé.
+- Vérifier que seuls les MCP nécessaires sont activés.

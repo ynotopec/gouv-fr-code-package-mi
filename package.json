@@ -1,19 +1,17 @@
 {
   "name": "gouv-fr-code",
-  "title": "Gouv-fr-code — Skills pour l'administration française",
+  "title": "Gouv-fr-code — Skills spécialisés pour l'administration française",
   "version": "0.1.0",
-  "description": "Package complet de skills pour construire des applications de l'administration française avec Hermes Agent. Inclut la structure projet, sécurité, conformité RGAA/DSFR/RGPD, workflow et conventions git.",
+  "description": "Skills compacts pour Albert/OpenCode, RGAA/DSFR/RGPD, Cloud Pi Native et la sécurité agent-vm.",
   "author": "gouv-fr-code (etalab-ia), Hermes Agent",
   "license": "MIT",
   "platforms": ["linux", "macos"],
-  "tags": ["gouv-fr-code", "sovereign", "france", "etat", "government", "app", "build", "dsfr", "rgaa", "rgpd", "security", "compliance", "workflow", "git"],
+  "tags": ["gouv-fr-code", "france", "etat", "albert", "dsfr", "rgaa", "rgpd", "cloud-pi-native", "security"],
   "skills": [
-    "gouv-fr-code",
-    "gouv-fr-code-project",
-    "gouv-fr-code-security",
     "gouv-fr-code-compliance",
-    "gouv-fr-code-workflow",
-    "gouv-fr-code-git"
+    "gouv-fr-code-deploy",
+    "gouv-fr-code-project",
+    "gouv-fr-code-security"
   ],
   "resources": {
     "source": "https://github.com/etalab-ia/albert-code",

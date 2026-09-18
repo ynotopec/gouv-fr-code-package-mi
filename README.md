@@ -1,36 +1,34 @@
-# Package Gouv-fr-code pour Hermes Agent
+# Skills gouv-fr-code
 
-Package complet pour construire des applications de l'administration française avec Hermes Agent.
+Quatre skills compacts pour les contraintes propres aux services numériques de l'administration française et à l'environnement gouv-fr-code.
 
-## Contenu
-
-| Directory | Rôle |
+| Skill | Déclenchement |
 |---|---|
-| `gouv-fr-code/` | Index général du package |
-| `gouv-fr-code-project/` | Structure du projet, layout, OpenCode, variables d'environnement |
-| `gouv-fr-code-security/` | Règles de sécurité : secrets, gitleaks, SQL injection, TLS, VM isolation |
-| `gouv-fr-code-compliance/` | RGAA (accessibilité), DSFR (design system), RGPD |
-| `gouv-fr-code-workflow/` | Plan mode, task management, self-improvement, bug fixing |
-| `gouv-fr-code-git/` | Commits Conventional, PRs, trailer Co-Authored-By, .gitignore |
+| `gouv-fr-code-project` | Configurer Albert, OpenCode, agent-vm, les MCP ou la sélection de skills |
+| `gouv-fr-code-compliance` | Appliquer ou auditer RGAA, DSFR et RGPD |
+| `gouv-fr-code-deploy` | Déployer sur Cloud Pi Native avec Kubernetes, OpenShift et Helm |
+| `gouv-fr-code-security` | Manipuler secrets, données sensibles, réseau ou Git depuis agent-vm |
+
+Les conventions génériques de code, Git, lint, API ou monorepo appartiennent au `AGENTS.md` du projet et aux configurations exécutables, pas à des skills chargés en contexte.
 
 ## Installation
 
-Chaque dossier contient un `SKILL.md`. Pour installer un skill :
+Installer uniquement les skills nécessaires :
 
 ```bash
-hermes skill install /path/to/gouv-fr-code-package/gouv-fr-code
+hermes skill install /path/to/gouv-fr-code-package-mi/gouv-fr-code-compliance
 ```
 
-Ou copier manuellement les dossiers dans `~/.hermes/skills/`.
+Ou copier le dossier concerné dans `~/.hermes/skills/`.
 
-## Ressources
+## Sources de référence
 
-- **Source** : `github.com/etalab-ia/albert-code`
-- **OpenCode** : `https://opencode.ai/docs/fr`
-- **Albert API** : `https://albert.api.etalab.gouv.fr`
-- **DSFR** : `https://www.systeme-de-design.gouv.fr/`
-- **Skills of the State** : `https://github.com/etalab-ia/skills`
+- [Albert API](https://albert.api.etalab.gouv.fr)
+- [DSFR](https://www.systeme-de-design.gouv.fr/)
+- [RGAA](https://accessibilite.numerique.gouv.fr/)
+- [CNIL](https://www.cnil.fr/)
+- [Cloud Pi Native](https://cloud-pi-native.fr/)
 
-## License
+## Licence
 
-MIT — Auteur : gouv-fr-code (etalab-ia), Hermes Agent
+MIT

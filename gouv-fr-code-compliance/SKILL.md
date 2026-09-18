@@ -1,50 +1,31 @@
 ---
 name: gouv-fr-code-compliance
-description: "Gouv-fr-code compliance: RGAA accessibility, DSFR design system, RGPD data protection."
-version: 0.1.0
-author: etalab-ia, Hermes Agent
-license: MIT
-platforms: [linux, macos]
-metadata:
-  hermes:
-    tags: [gouv-fr-code, compliance, rgaa, dsfr, rgpd, accessibility, etat, design-system, data-protection]
-    related_skills: [gouv-fr-code, gouv-fr-code-project, gouv-fr-code-security]
+description: Appliquer ou auditer les exigences françaises RGAA, DSFR et RGPD d'un service public numérique. Utiliser pour une interface de l'État, une revue d'accessibilité, l'intégration DSFR ou le traitement de données personnelles.
 ---
 
-# Gouv-fr — Conformité
+# Vérifier la conformité d'un service public numérique
 
-Règles d'accessibilité et conformité réglementaire pour les applications gouv-fr-code.
+## Procédure
 
-## RGAA (Accessibilité)
+1. Identifier les référentiels applicables au service : RGAA, DSFR et traitements soumis au RGPD.
+2. Réutiliser les composants et tokens DSFR officiels avant de créer un composant personnalisé.
+3. Tester les parcours complets au clavier, l'ordre du focus, les intitulés, les alternatives textuelles et la structure HTML.
+4. Compléter les tests automatisés par une vérification manuelle ; ne jamais conclure à la conformité RGAA sur le seul résultat d'un outil.
+5. Pour chaque donnée personnelle, documenter la finalité et supprimer les collectes non nécessaires.
+6. Signaler les écarts, leur impact utilisateur et la preuve permettant de les reproduire.
 
-- Contraste suffisant (WCAG AA minimum)
-- Navigation complète au clavier
-- Attributs `alt` pertinents sur les images
-- Structure sémantique HTML (headings, landmarks)
-- Rôles ARIA quand nécessaire
-- Tests d'accessibilité automatisés dans la CI
+## Garde-fous
 
-## DSFR (Design System de l'État)
+- Ne pas remplacer un élément HTML natif par ARIA lorsque le natif convient.
+- Ne pas modifier l'identité visuelle ou les composants DSFR sans justification validée.
+- Ne pas ajouter de traceur tiers sans mécanisme de consentement adapté.
+- Ne pas utiliser de données personnelles réelles dans les fixtures, captures ou journaux.
+- Ne pas présenter une revue partielle comme un audit réglementaire complet.
 
-- Utiliser les composants officiels DSFR (React, Vue, HTML/CSS)
-- Respecter les tokens (couleurs, tailles, espacements)
-- Ne pas customiser sans validation
-- Components : boutons, champs de formulaire, tableaux, pagination, toasts, modals
+## Vérification
 
-## RGPD (Protection des données)
-
-- Minimisation des données collectées
-- Pas de traceur tiers sans consentement
-- Consentement explicement recueilli
-- Droit à l'oubli : suppression des données utilisateur
-- Chiffrement des données sensibles
-
-## Checklist de conformité
-
-Avant de livrer :
-- [ ] Contraste validé (WCAG AA)
-- [ ] Navigation clavier testée
-- [ ] DSFR tokens utilisés (pas de couleurs custom)
-- [ ] Aucun secret en production
-- [ ] RGPD : pas de données personnelles non justifiées
-- [ ] Tests d'accessibilité passent
+- Parcourir sans souris toutes les fonctions principales.
+- Contrôler contraste, zoom, erreurs de formulaire et annonces des contenus dynamiques.
+- Rechercher les couleurs et espacements codés en dur hors tokens DSFR.
+- Inventorier les données collectées, leur finalité, leur conservation et leur suppression.
+- Produire une liste d'écarts traçable plutôt qu'un verdict sans preuves.
