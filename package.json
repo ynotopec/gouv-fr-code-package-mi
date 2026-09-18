@@ -5,6 +5,9 @@
   "description": "Skills compacts pour Albert/OpenCode, RGAA/DSFR/RGPD, Cloud Pi Native et la sécurité agent-vm.",
   "author": "gouv-fr-code (etalab-ia), Hermes Agent",
   "license": "MIT",
+  "scripts": {
+    "check": "python3 scripts/validate_package.py && python3 -m unittest discover -s tests -v"
+  },
   "platforms": ["linux", "macos"],
   "tags": ["gouv-fr-code", "france", "etat", "albert", "dsfr", "rgaa", "rgpd", "cloud-pi-native", "security"],
   "skills": [

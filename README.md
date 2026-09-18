@@ -21,6 +21,15 @@ hermes skill install /path/to/gouv-fr-code-package-mi/gouv-fr-code-compliance
 
 Ou copier le dossier concerné dans `~/.hermes/skills/`.
 
+## Validation
+
+Vérifier le manifeste, les métadonnées des skills et les tests avant de proposer
+une modification :
+
+```bash
+npm run check
+```
+
 ## Sources de référence
 
 - [Albert API](https://albert.api.etalab.gouv.fr)
