@@ -1,0 +1,66 @@
+{
+  "name": "gouv-fr-code",
+  "title": "Gouv-fr-code — Skills pour l'administration française",
+  "version": "0.1.0",
+  "description": "Package complet de skills pour construire des applications de l'administration française avec Hermes Agent. Inclut la structure projet, sécurité, conformité RGAA/DSFR/RGPD, workflow et conventions git.",
+  "author": "gouv-fr-code (etalab-ia), Hermes Agent",
+  "license": "MIT",
+  "platforms": ["linux", "macos"],
+  "tags": ["gouv-fr-code", "sovereign", "france", "etat", "government", "app", "build", "dsfr", "rgaa", "rgpd", "security", "compliance", "workflow", "git"],
+  "skills": [
+    "gouv-fr-code",
+    "gouv-fr-code-project",
+    "gouv-fr-code-security",
+    "gouv-fr-code-compliance",
+    "gouv-fr-code-workflow",
+    "gouv-fr-code-git"
+  ],
+  "resources": {
+    "source": "https://github.com/etalab-ia/albert-code",
+    "opencode_docs": "https://opencode.ai/docs/fr",
+    "albert_api": "https://albert.api.etalab.gouv.fr",
+    "albert_api_docs": "https://doc.incubateur.net/alliance/albert-api",
+    "agent_vm": "https://github.com/sylvinus/agent-vm",
+    "dsfr": "https://www.systeme-de-design.gouv.fr/",
+    "skills_catalog": "https://github.com/etalab-ia/skills"
+  },
+  "environment": {
+    "keys": [
+      {
+        "name": "AC_VM_CPUS",
+        "default": "4",
+        "description": "CPU alloués à la VM agent"
+      },
+      {
+        "name": "AC_VM_MEMORY",
+        "default": "8",
+        "description": "RAM allouée à la VM (GiB)"
+      },
+      {
+        "name": "AC_VM_DISK",
+        "default": "32",
+        "description": "Disque VM (GiB, sparse, croissance)"
+      },
+      {
+        "name": "AC_ALBERT_BASE_URL",
+        "default": "https://albert.api.etalab.gouv.fr/v1",
+        "description": "Endpoint Albert API"
+      },
+      {
+        "name": "AGENT_VM_DIR",
+        "default": "$SELF_DIR/vendor/vm",
+        "description": "Bundle agent-vm"
+      },
+      {
+        "name": "RUNTIME_VM_FILE",
+        "default": "$HOME/.agent-vm/runtime.sh",
+        "description": "Configuration runtime VM"
+      }
+    ]
+  },
+  "dependencies": {
+    "required_commands": ["git", "python3"],
+    "optional_commands": ["node", "playwright"]
+  },
+  "related_packages": []
+}
