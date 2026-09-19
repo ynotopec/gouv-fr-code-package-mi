@@ -11,6 +11,15 @@ Quatre skills compacts pour les contraintes propres aux services numériques de 
 
 Les conventions génériques de code, Git, lint, API ou monorepo appartiennent au `AGENTS.md` du projet et aux configurations exécutables, pas à des skills chargés en contexte.
 
+## Références standard
+
+Les skills ne recopient pas les méthodes générales déjà portées par un rôle ou
+un skill standard. La notation `role:<nom>` désigne une posture à confier à
+l'agent et `skill:<nom>` une capacité à charger depuis le catalogue disponible.
+Ces références sont des prérequis, pas de nouveaux contenus embarqués dans ce
+package. Les instructions qui suivent une référence décrivent uniquement l'écart
+propre à gouv-fr-code ou à l'administration française.
+
 ## Installation
 
 Installer uniquement les skills nécessaires :
