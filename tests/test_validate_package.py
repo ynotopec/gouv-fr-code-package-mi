@@ -50,6 +50,27 @@ class ValidatePackageTests(unittest.TestCase):
                 validate(root),
             )
 
+    def test_validates_a_duplicated_skill_only_once(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.create_package(root, ["example-skill"])
+            (root / "package.json").write_text(
+                json.dumps({"skills": ["example-skill", "example-skill"]}),
+                encoding="utf-8",
+            )
+            (root / "example-skill" / "SKILL.md").write_text(
+                "---\nname: wrong-name\n---\nBody\n", encoding="utf-8"
+            )
+
+            errors = validate(root)
+
+            self.assertEqual(errors.count("package.json: 'skills' contains duplicates"), 1)
+            self.assertEqual(
+                sum("missing frontmatter keys: description" in error for error in errors),
+                1,
+            )
+            self.assertEqual(sum("name must match" in error for error in errors), 1)
+
     def test_reports_name_mismatch_and_unknown_key(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

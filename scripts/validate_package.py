@@ -55,13 +55,18 @@ def validate(root: Path) -> list[str]:
     if not isinstance(skills, list) or not skills:
         return ["package.json: 'skills' must be a non-empty array"]
     string_skills = [skill for skill in skills if isinstance(skill, str)]
-    if len(string_skills) != len(set(string_skills)):
+    unique_string_skills = set(string_skills)
+    if len(string_skills) != len(unique_string_skills):
         errors.append("package.json: 'skills' contains duplicates")
 
+    validated_skills: set[str] = set()
     for skill in skills:
         if not isinstance(skill, str) or not SKILL_NAME.fullmatch(skill):
             errors.append(f"package.json: invalid skill name: {skill!r}")
             continue
+        if skill in validated_skills:
+            continue
+        validated_skills.add(skill)
         skill_file = root / skill / "SKILL.md"
         if not skill_file.is_file():
             errors.append(f"{skill}/SKILL.md: declared skill is missing")
@@ -92,7 +97,7 @@ def validate(root: Path) -> list[str]:
         if len(description) > 1024:
             errors.append(f"{skill}/SKILL.md: description exceeds 1024 characters")
 
-    declared = set(string_skills)
+    declared = unique_string_skills
     discovered = {
         path.parent.name
         for path in root.glob("*/SKILL.md")
