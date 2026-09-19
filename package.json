@@ -6,14 +6,22 @@
   "author": "gouv-fr-code (etalab-ia), Hermes Agent",
   "license": "MIT",
   "platforms": ["linux", "macos"],
-  "tags": ["gouv-fr-code", "sovereign", "france", "etat", "government", "app", "build", "dsfr", "rgaa", "rgpd", "security", "compliance", "workflow", "git"],
+  "tags": ["gouv-fr-code", "sovereign", "france", "etat", "government", "app", "build", "dsfr", "rgaa", "rgpd", "security", "compliance", "workflow", "git", "stack", "cicd", "deploy", "docker", "kubernetes", "helm", "quality", "naming", "lint", "monorepo", "api", "rest", "openapi"],
   "skills": [
     "gouv-fr-code",
     "gouv-fr-code-project",
     "gouv-fr-code-security",
     "gouv-fr-code-compliance",
     "gouv-fr-code-workflow",
-    "gouv-fr-code-git"
+    "gouv-fr-code-git",
+    "gouv-fr-code-stack",
+    "gouv-fr-code-cicd",
+    "gouv-fr-code-deploy",
+    "gouv-fr-code-quality",
+    "gouv-fr-code-naming",
+    "gouv-fr-code-lint",
+    "gouv-fr-code-monorepo",
+    "gouv-fr-code-api"
   ],
   "resources": {
     "source": "https://github.com/etalab-ia/albert-code",
